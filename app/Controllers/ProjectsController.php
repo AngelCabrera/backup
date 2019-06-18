@@ -9,11 +9,11 @@ use Aura\Router\Exception;
 
 class ProjectsController extends BaseController
 {
-    public function getAddProjectAction()
-    {
-        return $this->renderHTML('addProject.twig');
-    }
-
+  public function getAddProjectAction()
+  {
+    return $this->renderHTML('addProject.twig');
+  }
+  
     public function postAddProjectAction($request)
     {
         $data = $request->getParsedBody();
@@ -41,9 +41,9 @@ class ProjectsController extends BaseController
             $projectTecnology->title = strtoupper($technology);
             $projectTecnology->project_id = (int)$project_id;
             $projectTecnology->save();
-            echo "Proyecto guardado con éxito";
+            $alert = "Proyecto guardado con éxito";
         }
 
-        return $this->renderHTML('addProject.twig');
+        return $this->renderHTML('addProject.twig', ['alert' => $alert]);
     }
 }

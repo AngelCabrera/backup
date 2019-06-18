@@ -2,13 +2,13 @@
 {% block head %}
     <style>
         #edit:hover {
-            color: blue;
+            color: #007bff;
         }
     </style>
 {% endblock %}
 {% block content %}
     {% if alert %}
-        <div class="alert alert-success mt-3">{{ alert }}</div>
+        <div class="alert alert-success m-0">{{ alert }}</div>
     {% endif %}
     <div>
         <a class="btn btn-outline-light" href="/" id="edit">Curriculum</a>

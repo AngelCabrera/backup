@@ -17,7 +17,7 @@ class ResumeController extends BaseController
         $resume = new Resume();
         $resume->content = $data['content'];
         $resume->save();
-        echo 'Añadido resumen con éxito';
-        return $this->renderHTML('addResume.twig');
+        $alert = 'Resumen añadido con éxito';
+        return $this->renderHTML('addResume.twig', ['alert' => $alert]);
     }
 }

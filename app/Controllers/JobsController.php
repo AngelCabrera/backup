@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Job;
 use App\Models\JobAchievement;
 use Respect\Validation\Validator as v;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class JobsController extends BaseController
 {
@@ -34,9 +35,8 @@ class JobsController extends BaseController
 
             try {
                 $job->save();
-                echo 'Añadido con éxito a la base de datos';
             } catch (Exception $e) {
-                echo 'Error: ', $e->getMessage(), "\n";
+                $alert = 'Error: ' . $e->getMessage() . "\n";
             }
         } else
             echo 'Imposible guardar, verifica que los datos cumplan con los requerimientos';
@@ -56,12 +56,11 @@ class JobsController extends BaseController
             $achieve->job_id = $job_id;
             try {
                 $achieve->save();
-                echo 'Añadido con éxito a la base de datos';
+                $alert = "Guardado en la base de datos con éxito";
             } catch (Exception $e) {
-                echo 'Error: ', $e->getMessage(), "\n";
+                $alert = 'Error: ' . $e->getMessage() . "\n";
             }
         }
-
-        return $this->renderHTML('addJob.twig');
+        return $this->renderHTML('addJob.twig', ['alert' => $alert]);
     }
 }

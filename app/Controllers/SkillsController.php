@@ -18,7 +18,7 @@ class SkillsController extends BaseController
     $skill->title = $data['title'];
     $skill->category = $data['category'];
     $skill->save();
-    echo 'Habilidad añadida con éxito';
-    return $this->renderHTML('addSkill.twig');
+    $alert = 'Habilidad añadida con éxito';
+    return $this->renderHTML('addSkill.twig', ['alert' => $alert]);
   }
 }
