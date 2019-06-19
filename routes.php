@@ -12,7 +12,7 @@ $map->get('index', '/', [
     'action' => 'getIndexAction'
 ]);
 
-$map->get('getAddJob', '/jobs/add', [
+$map->get('getAddJob', '/curriculum/jobs/add', [
     'controller' => 'App\Controllers\JobsController',
     'action' => 'getAddJobAction'
 ]);
@@ -22,12 +22,12 @@ $map->post('postAddJob', '/jobs/add', [
     'action' => 'postAddJobAction'
 ]);
 
-$map->get('getAddProject', '/projects/add', [
+$map->get('getAddProject', '/curriculum/projects/add', [
     'controller' => 'App\Controllers\ProjectsController',
     'action' => 'getAddProjectAction'
 ]);
 
-$map->post('postAddProject', '/projects/add', [
+$map->post('postAddProject', '/curriculum/projects/add', [
     'controller' => 'App\Controllers\ProjectsController',
     'action' => 'postAddProjectAction'
 ]);

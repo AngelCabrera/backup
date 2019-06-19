@@ -9,22 +9,32 @@ use Aura\Router\Exception;
 
 class ProjectsController extends BaseController
 {
-  public function getAddProjectAction()
-  {
-    return $this->renderHTML('addProject.twig');
-  }
-  
+    public function getAddProjectAction()
+    {
+        return $this->renderHTML('addProject.twig');
+    }
+
     public function postAddProjectAction($request)
     {
         $data = $request->getParsedBody();
+        $files = $request->getUploadedFiles();
+        $thumbnail = $files['thumbnail'];
+        if ($thumbnail->getError() == UPLOAD_ERR_OK) {
+            $filename = $thumbnail->getClientFileName();
+            $path = "storage/uploads/" . $filename;
+            $thumbnail->moveTo($path);
+        } else {
+            echo "Error on upload";
+        }
 
         $project = new Project();
         $project->title = $data['title'];
         $project->description = $data['description'];
+        $project->image = $filename;
         try {
             $project->save();
         } catch (Exception $e) {
-            echo $e->getMessage();
+            $alert = "Error: " . $e->getMessage();
         }
 
         $technologies = [];
